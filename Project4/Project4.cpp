@@ -12,6 +12,7 @@ int main()
 {
 	int month, year;
 	cout << "****Welcome to the Days in a Month Calulator****" << endl << endl;//Intro to first input
+	cout << "1. January\n2. February\n3. March\n4. April\n5. May\n6. June\n7. July\n8. August\n9. September\n10. October\n11. November\n12. December" << endl << endl;
 	cout << "Begin by entering the number of the month (1-12): ";
 	cin >> month;
 	if (month < 1 || month >12) {//Safety net should the user input outside of 1-12
