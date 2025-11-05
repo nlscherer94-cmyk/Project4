@@ -2,42 +2,75 @@
 #include <iomanip>
 using namespace std;
 
-int main() 
-{
-	double weight, distance, rate, charge;
+const double PI = 3.14159;//PI
 
-	cout << "****Welcome to the Shipping Charges Calulator****\n\n";
+void displayMenu() {//Original display menu using void because nothing is returned
+	cout << "***Geometry Calulator***\n";
+	cout << "1. Calculate the Area of a Circle\n";
+	cout << "2. Calculate the Area of a Rectangle\n";
+	cout << "3. Calculate the Area of a Triangle\n";
+	cout << "4. Quit\n";
+	cout << "Enter your choice (1-4): ";
+}
 
-	do {//Do/while statement to protect from input outside of requested range.
-		cout << "Enter the weight of the package (must be between 1-20 kg): ";
-		cin >> weight;
+double stayPositive(const string& prompt) {//Protect from negative numbers
+	double value;
+	cout << prompt;
+	cin >> value;
+	while (value < 0) {
+		cout << "Error: Value cannot be negative.\n" << prompt;
+		cin >> value;
+	}
+	return value;
+}
 
-		if (weight <= 0 || weight > 20)
-			cout << "\nInvalid weight. Must be between 1-20 kg.\n\n\n";
-	} while (weight <= 0 || weight > 20);
-
-	do {//Do/while statement to protect from input outside of requested range.
-		cout << "\nEnter the shipping distance (must be between 10-3000 miles): ";
-		cin >> distance;
-
-		if (distance < 10 || distance > 3000)
-			cout << "\nInvalid distance. Must be between 10-3000 miles. \n\n\n";
-	} while (distance < 10 || distance > 3000);
-
-	if (weight <= 2)//Calculating the rate of shipping based off of the items weight
-		rate = 1.10;
-	else if (weight <= 6)
-		rate = 2.20;
-	else if (weight <= 10)
-		rate = 3.70;
-	else
-		rate = 4.80;
-
-	int moneyPerMiles = static_cast<int>((distance + 499) / 500);//Distance is changes price every 500 miles, calculates that for user.
-
-	charge = rate * moneyPerMiles;//Gives the official shipping cost that is charged to the user
-
+void calulateCircleArea() {//Circle equation
+	double radius = stayPositive("\nEnter the radius of the circle : ");
+	double area = PI * radius * radius;//circle area is PI * r ^2
 	cout << fixed << setprecision(2);
-	cout << "\nShipping charge: $" << charge << endl << endl;
+	cout << "\nThe area of the circle is " << area << endl;
+}
+
+void calculateRectangleArea() {//Rectangle equation
+	double length = stayPositive("\nEnter the length of the rectangle: ");
+	double width = stayPositive("\nEnter the width of the rectangle: ");
+	double area = length * width;
+	cout << fixed << setprecision(2);
+	cout << "\nThe area of the rectangle is " << area << endl;
+}
+
+void calculateTriangleArea() {//Triangle equation
+	double base = stayPositive("\nEnter the base of the triangle: ");
+	double height = stayPositive("\nEnter the height of the triangle: ");
+	double area = base * height * 0.5;
+	cout << fixed << setprecision(2);
+	cout << "\nThe area of the triangle is " << area << endl;
+}
+
+int main() {//Switch case to decide which above equation is formulated for the user
+	int choice;
+
+	do {
+		displayMenu();
+		cin >> choice;
+
+		switch (choice) {
+		case 1:
+			calulateCircleArea();
+			break;
+		case 2:
+			calculateRectangleArea();
+			break;
+		case 3:
+			calculateTriangleArea();
+			break;
+		case 4:
+			cout << "\nThank you for using Geometry Calculator! Goodbye!\n";
+			break;
+		default:
+			cout << "\n\nError: Please enter a number between 1 and 4\n\n";//Safety net to ensure user inputs a number netween 1 and 4
+		}
+		cout << endl;
+	} while (choice != 4);
 	return 0;
 }
