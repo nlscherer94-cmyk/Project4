@@ -33,7 +33,7 @@ int main()
 	else
 		rate = 4.80;
 
-	int moneyPerMiles = static_cast<int>((distance + 499) / 500);//Distance is changes price every 500 miles, calculates that for user.
+	int moneyPerMiles = static_cast<int>((distance + 499) / 500);//Distance changes price every 500 miles, calculates that for user.
 
 	charge = rate * moneyPerMiles;//Gives the official shipping cost that is charged to the user
 
