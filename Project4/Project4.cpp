@@ -18,13 +18,13 @@ double stayPositive(const string& prompt) {//Protect from negative numbers
 	cout << prompt;
 	cin >> value;
 	while (value < 0) {
-		cout << "Error: Value cannot be negative.\n" << prompt;
+		cout << "\nError: Value cannot be negative.\n" << prompt;
 		cin >> value;
 	}
 	return value;
 }
 
-void calulateCircleArea() {//Circle equation
+void calculateCircleArea() {//Circle equation
 	double radius = stayPositive("\nEnter the radius of the circle : ");
 	double area = PI * radius * radius;//circle area is PI * r ^2
 	cout << fixed << setprecision(2);
@@ -56,7 +56,7 @@ int main() {//Switch case to decide which above equation is formulated for the u
 
 		switch (choice) {
 		case 1:
-			calulateCircleArea();
+			calculateCircleArea();
 			break;
 		case 2:
 			calculateRectangleArea();
